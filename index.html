@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +26,7 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        .video-container, .contact-section {
+        .video-container {
             transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
             opacity: 0;
             transform: translateY(30px);
@@ -52,26 +52,6 @@
             letter-spacing: 0.2em;
         }
 
-        input, textarea {
-            background: transparent;
-            border-bottom: 1px solid #30363d;
-            transition: border-color 0.3s ease;
-        }
-
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: #e6edf3;
-        }
-
-        .submit-btn {
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            letter-spacing: 0.3em;
-            opacity: 0.7;
-        }
-
         .aspect-vertical {
             aspect-ratio: 9 / 16;
         }
@@ -79,6 +59,7 @@
 </head>
 <body class="antialiased overflow-x-hidden">
 
+    <!-- Hero Section -->
     <header class="min-h-screen flex flex-col items-center justify-center text-center px-6 fade-in">
         <h2 class="text-5xl md:text-7xl font-bold tracking-tight mb-4 lowercase">
             flipe
@@ -94,8 +75,10 @@
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 space-y-32 md:space-y-64">
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 space-y-32 md:space-y-64 pb-32">
         
+        <!-- Project 01 - Vertical Short -->
         <section class="video-container flex flex-col items-center">
             <div class="w-full max-w-[380px]">
                 <div class="relative overflow-hidden bg-zinc-900 aspect-vertical rounded-sm shadow-2xl">
@@ -116,6 +99,7 @@
             </div>
         </section>
 
+        <!-- Project 02 - Horizontal Reel -->
         <section class="video-container flex flex-col items-center">
             <div class="w-full md:w-10/12 lg:w-9/12">
                 <div class="relative overflow-hidden bg-zinc-900 aspect-video rounded-sm shadow-2xl">
@@ -136,58 +120,21 @@
             </div>
         </section>
 
-        <section id="contact" class="contact-section flex flex-col items-center pt-32 pb-32">
-            <div class="w-full md:w-8/12 lg:w-6/12">
-                <h3 class="text-xs uppercase tracking-[0.4em] font-light mb-12 text-gray-500 text-center">
-                    Entrar em contacto
-                </h3>
-                <!-- Nota: Substitua 'mgozynzj' pelo seu ID real se este não for o seu -->
-                <form action="https://formspree.io/f/mgozynzj" method="POST" id="contactForm" class="space-y-12">
-                    <!-- Campo oculto para o assunto do e-mail -->
-                    <input type="hidden" name="_subject" value="Novo contacto do Portfólio!">
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                        <div class="flex flex-col">
-                            <label class="text-[10px] uppercase tracking-widest text-gray-600 mb-2">Nome</label>
-                            <input type="text" name="name" required class="py-2 px-0 text-white border-b border-zinc-800">
-                        </div>
-                        <div class="flex flex-col">
-                            <label class="text-[10px] uppercase tracking-widest text-gray-600 mb-2">E-mail</label>
-                            <input type="email" name="email" required class="py-2 px-0 text-white border-b border-zinc-800">
-                        </div>
-                    </div>
-                    <div class="flex flex-col">
-                        <label class="text-[10px] uppercase tracking-widest text-gray-600 mb-2">Mensagem</label>
-                        <textarea name="message" rows="4" required class="py-2 px-0 resize-none text-white border-b border-zinc-800"></textarea>
-                    </div>
-                    <div class="flex justify-center pt-8">
-                        <button type="submit" id="submitBtn" class="submit-btn text-xs uppercase tracking-[0.3em] border border-gray-700 px-12 py-4 hover:bg-white hover:text-black">
-                            Enviar Mensagem
-                        </button>
-                    </div>
-                </form>
-                
-                <div id="formStatus" class="mt-8 text-center text-xs tracking-widest uppercase hidden transition-all duration-500 text-green-500">
-                    Obrigado! A sua mensagem foi enviada com sucesso.
-                </div>
-                <div id="formError" class="mt-8 text-center text-xs tracking-widest uppercase hidden transition-all duration-500 text-red-500">
-                    Ocorreu um erro. Verifique se o formulário está ativo no Formspree.
-                </div>
-            </div>
-        </section>
-
     </main>
 
+    <!-- Footer -->
     <footer class="py-20 border-t border-gray-900 flex flex-col items-center">
-        <div class="flex text-xs font-bold tracking-widest uppercase text-gray-400">
-            <p>flipevideoeditor@outlook.com</p>
+        <div class="flex flex-col items-center space-y-4">
+            <h3 class="text-[10px] uppercase tracking-[0.4em] font-light text-gray-500">Contact</h3>
+            <p class="text-sm font-bold tracking-widest uppercase text-gray-400">flipevideoeditor@gmail.com</p>
         </div>
         <p class="mt-12 text-[10px] text-gray-600 tracking-widest uppercase">
-            &copy; 2026 flipe. Todos os direitos reservados.
+            &copy; 2026 flipe. All rights reserved.
         </p>
     </footer>
 
     <script>
+        // Scroll animation logic
         const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -197,46 +144,8 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.video-container, .contact-section').forEach(section => {
+        document.querySelectorAll('.video-container').forEach(section => {
             observer.observe(section);
-        });
-
-        const contactForm = document.getElementById('contactForm');
-        const formStatus = document.getElementById('formStatus');
-        const formError = document.getElementById('formError');
-        const submitBtn = document.getElementById('submitBtn');
-
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const data = new FormData(contactForm);
-            
-            submitBtn.disabled = true;
-            submitBtn.innerText = "A ENVIAR...";
-            contactForm.style.opacity = '0.3';
-            formError.classList.add('hidden');
-
-            try {
-                const response = await fetch(contactForm.action, {
-                    method: 'POST',
-                    body: data,
-                    headers: { 'Accept': 'application/json' }
-                });
-
-                if (response.ok) {
-                    contactForm.reset();
-                    contactForm.classList.add('hidden');
-                    formStatus.classList.remove('hidden');
-                } else {
-                    const errorData = await response.json();
-                    console.error("Erro Formspree:", errorData);
-                    throw new Error();
-                }
-            } catch (err) {
-                submitBtn.disabled = false;
-                submitBtn.innerText = "ENVIAR MENSAGEM";
-                contactForm.style.opacity = '1';
-                formError.classList.remove('hidden');
-            }
         });
     </script>
 </body>
